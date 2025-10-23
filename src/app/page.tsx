@@ -8,7 +8,7 @@ export default function Home() {
     <div className="max-w-4xl mx-auto">
       <div className="mb-12">
         <h2 className="text-4xl font-bold mb-4">
-          Tech Blogへようこそ
+          1mm Tech Blogへようこそ
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-400">
           Next.js、React、TypeScriptで構築された技術ブログです
