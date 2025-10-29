@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getPostData, getAllPostSlugs } from "@/lib/posts";
+import CodeBlock from "@/components/CodeBlock";
 
 export async function generateStaticParams() {
   const posts = getAllPostSlugs();
@@ -48,6 +49,7 @@ export default async function Post({
         className="article-content prose prose-emerald dark:prose-invert max-w-none"
         dangerouslySetInnerHTML={{ __html: post.content || "" }}
       />
+      <CodeBlock />
     </article>
   );
 }
