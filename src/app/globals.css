@@ -3,20 +3,20 @@
 :root {
   --background: #f8faf9;
   --foreground: #1a2e1a;
-  --primary: #10b981;
-  --primary-dark: #059669;
-  --primary-light: #d1fae5;
-  --secondary: #34d399;
-  --accent: #6ee7b7;
+  --primary: #81c995;
+  --primary-dark: #5fa777;
+  --primary-light: #e8f5e9;
+  --secondary: #a5d6a7;
+  --accent: #b2dfdb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f1f0f;
     --foreground: #e8f5e9;
-    --primary: #34d399;
-    --primary-dark: #6ee7b7;
-    --primary-light: #064e3b;
+    --primary: #a5d6a7;
+    --primary-dark: #c8e6c9;
+    --primary-light: #2e5940;
   }
 }
 
@@ -159,9 +159,9 @@ body {
 }
 
 .copy-button.copied {
-  background-color: #d1fae5;
-  border-color: #10b981;
-  color: #059669;
+  background-color: #e8f5e9;
+  border-color: #81c995;
+  color: #5fa777;
 }
 
 .copy-button svg {
@@ -212,8 +212,8 @@ body {
   }
 
   .copy-button.copied {
-    background-color: #064e3b;
-    border-color: #34d399;
-    color: #6ee7b7;
+    background-color: #2e5940;
+    border-color: #a5d6a7;
+    color: #c8e6c9;
   }
 }
