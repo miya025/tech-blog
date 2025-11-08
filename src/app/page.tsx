@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getSortedPostsData } from "@/lib/posts";
 
 export default function Home() {
@@ -27,29 +28,44 @@ export default function Home() {
           {posts.map((post) => (
             <article
               key={post.slug}
-              className="group relative bg-white dark:bg-emerald-900 border-2 border-emerald-100 dark:border-emerald-700 rounded-xl p-6 hover:shadow-2xl hover:shadow-emerald-400/10 hover:border-emerald-300 dark:hover:border-emerald-500 transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white dark:bg-emerald-900 border-2 border-emerald-100 dark:border-emerald-700 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-emerald-400/10 hover:border-emerald-300 dark:hover:border-emerald-500 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-emerald-400 to-green-400 rounded-l-xl"></div>
               <Link href={`/posts/${post.slug}`} className="block">
-                <h4 className="text-2xl font-bold mb-3 text-emerald-800 dark:text-emerald-100 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors">
-                  {post.title}
-                </h4>
-                {post.excerpt && (
-                  <p className="text-emerald-600 dark:text-emerald-300 mb-4 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                )}
-                <div className="flex gap-4 text-sm text-emerald-500 dark:text-emerald-400 font-medium">
-                  <time className="flex items-center gap-1">
-                    <span>📅</span>
-                    {post.date}
-                  </time>
-                  {post.category && (
-                    <span className="flex items-center gap-1 bg-emerald-100 dark:bg-emerald-800 px-3 py-1 rounded-full">
-                      <span>🏷️</span>
-                      {post.category}
-                    </span>
+                <div className={post.thumbnail ? "flex flex-col md:flex-row" : ""}>
+                  {post.thumbnail && (
+                    <div className="md:w-80 md:flex-shrink-0 h-48 md:h-auto relative">
+                      <Image
+                        src={post.thumbnail}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 320px"
+                      />
+                    </div>
                   )}
+                  <div className="p-6 flex-1">
+                    <h4 className="text-2xl font-bold mb-3 text-emerald-800 dark:text-emerald-100 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors">
+                      {post.title}
+                    </h4>
+                    {post.excerpt && (
+                      <p className="text-emerald-600 dark:text-emerald-300 mb-4 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <div className="flex gap-4 text-sm text-emerald-500 dark:text-emerald-400 font-medium">
+                      <time className="flex items-center gap-1">
+                        <span>📅</span>
+                        {post.date}
+                      </time>
+                      {post.category && (
+                        <span className="flex items-center gap-1 bg-emerald-100 dark:bg-emerald-800 px-3 py-1 rounded-full">
+                          <span>🏷️</span>
+                          {post.category}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </Link>
             </article>

@@ -3,6 +3,7 @@ title: "Claude Code on the web使ってみた"
 date: "2025-11-06"
 category: "Tech Blog"
 excerpt: "ブラウザ上でClaude Codeを使ってGitHub連携でブログ記事を作成してみました。"
+thumbnail: "/images/名称未設定のデザイン.png"
 ---
 
 Claude Code on the webを使って、実際にこのブログ記事を作成してみました。その体験と感想をまとめます。

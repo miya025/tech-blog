@@ -14,6 +14,7 @@ export interface PostData {
   date: string;
   category?: string;
   excerpt?: string;
+  thumbnail?: string;
   content?: string;
 }
 
@@ -38,6 +39,7 @@ export function getSortedPostsData(): PostData[] {
         date: matterResult.data.date,
         category: matterResult.data.category,
         excerpt: matterResult.data.excerpt,
+        thumbnail: matterResult.data.thumbnail,
       } as PostData;
     });
 
@@ -85,6 +87,7 @@ export async function getPostData(slug: string): Promise<PostData> {
     date: matterResult.data.date,
     category: matterResult.data.category,
     excerpt: matterResult.data.excerpt,
+    thumbnail: matterResult.data.thumbnail,
     content: contentHtml,
   };
 }

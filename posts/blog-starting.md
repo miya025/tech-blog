@@ -3,6 +3,7 @@ title: "Next.jsで作ったブログをVercelにデプロイしてみた"
 date: "2025-10-23"
 category: "Tech Blog"
 excerpt: "このブログでは技術に関する様々な情報を発信していきます。"
+thumbnail: "/images/screenshot-2025-10-20.png"
 ---
 
 
