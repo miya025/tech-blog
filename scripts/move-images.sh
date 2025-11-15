@@ -19,7 +19,7 @@ if [ $# -eq 0 ]; then
 fi
 
 ARTICLE_SLUG="$1"
-SOURCE_DIR="document/screenshots/${ARTICLE_SLUG}"
+SOURCE_DIR="$HOME/Documents/screenshot/article/${ARTICLE_SLUG}"
 DEST_DIR="public/images/${ARTICLE_SLUG}"
 POST_FILE="posts/${ARTICLE_SLUG}.md"
 TEMPLATE_FILE="posts/template.md"
@@ -70,8 +70,10 @@ echo -e "${GREEN}✓ ${#MOVED_IMAGES[@]}個の画像を移動しました${NC}"
 
 # 記事ファイルの処理
 echo ""
+FILE_CREATED=false
 if [ -f "$POST_FILE" ]; then
-    echo -e "${YELLOW}⊘ ${POST_FILE} は既に存在します（スキップ）${NC}"
+    echo -e "${YELLOW}⊘ ${POST_FILE} は既に存在します${NC}"
+    echo "既存ファイルに画像タグを挿入します..."
 else
     echo "記事ファイルを作成しています..."
 
@@ -84,34 +86,39 @@ else
     # テンプレートをコピー
     cp "$TEMPLATE_FILE" "$POST_FILE"
 
-    # 日付を更新（macOSとLinux両対応）
+    # タイトル、日付、サムネイルを更新（macOSとLinux両対応）
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS
+        sed -i '' "s/title: \".*\"/title: \"${ARTICLE_SLUG}\"/" "$POST_FILE"
         sed -i '' "s/date: \"[0-9-]*\"/date: \"${TODAY}\"/" "$POST_FILE"
         sed -i '' "s|thumbnail: \"/images/\"|thumbnail: \"/images/${ARTICLE_SLUG}/\"|" "$POST_FILE"
     else
         # Linux
+        sed -i "s/title: \".*\"/title: \"${ARTICLE_SLUG}\"/" "$POST_FILE"
         sed -i "s/date: \"[0-9-]*\"/date: \"${TODAY}\"/" "$POST_FILE"
         sed -i "s|thumbnail: \"/images/\"|thumbnail: \"/images/${ARTICLE_SLUG}/\"|" "$POST_FILE"
     fi
 
-    # 画像タグの挿入（8行目に挿入）
-    IMAGE_TAGS=""
+    FILE_CREATED=true
+    echo -e "${GREEN}✓ ${POST_FILE} を作成しました${NC}"
+fi
+
+# 画像タグの挿入（既存ファイルでも新規ファイルでも実行）
+if [ ${#MOVED_IMAGES[@]} -gt 0 ]; then
+    LINE_NUM=8
     for img in "${MOVED_IMAGES[@]}"; do
-        IMAGE_TAGS+="<img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\n\n"
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            # macOS
+            sed -i '' "${LINE_NUM}i\\
+<img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\\
+" "$POST_FILE"
+        else
+            # Linux
+            sed -i "${LINE_NUM}i <img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\n" "$POST_FILE"
+        fi
+        LINE_NUM=$((LINE_NUM + 2))  # 画像タグ + 空行 = 2行進める
     done
 
-    # 8行目（フロントマター直後）に画像タグを挿入
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        sed -i '' "8i\\
-${IMAGE_TAGS}" "$POST_FILE"
-    else
-        # Linux
-        sed -i "8i ${IMAGE_TAGS}" "$POST_FILE"
-    fi
-
-    echo -e "${GREEN}✓ ${POST_FILE} を作成しました${NC}"
     echo -e "${GREEN}✓ ${#MOVED_IMAGES[@]}個の画像タグを挿入しました${NC}"
 fi
 
