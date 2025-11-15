@@ -105,18 +105,19 @@ fi
 
 # 画像タグの挿入（既存ファイルでも新規ファイルでも実行）
 if [ ${#MOVED_IMAGES[@]} -gt 0 ]; then
-    LINE_NUM=8
-    for img in "${MOVED_IMAGES[@]}"; do
+    # 画像タグを逆順で挿入（8行目の前に挿入するため）
+    for ((i=${#MOVED_IMAGES[@]}-1; i>=0; i--)); do
+        img="${MOVED_IMAGES[$i]}"
         if [[ "$OSTYPE" == "darwin"* ]]; then
             # macOS
-            sed -i '' "${LINE_NUM}i\\
+            sed -i '' "8i\\
 <img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\\
+\\
 " "$POST_FILE"
         else
             # Linux
-            sed -i "${LINE_NUM}i <img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\n" "$POST_FILE"
+            sed -i "8i <img src=\"/images/${ARTICLE_SLUG}/${img}\" width=\"600\">\n\n" "$POST_FILE"
         fi
-        LINE_NUM=$((LINE_NUM + 2))  # 画像タグ + 空行 = 2行進める
     done
 
     echo -e "${GREEN}✓ ${#MOVED_IMAGES[@]}個の画像タグを挿入しました${NC}"
