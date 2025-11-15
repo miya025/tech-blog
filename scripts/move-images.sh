@@ -60,9 +60,15 @@ MOVED_IMAGES=()
 while IFS= read -r image_path; do
     if [ -f "$image_path" ]; then
         filename=$(basename "$image_path")
-        mv "$image_path" "$DEST_DIR/$filename"
-        MOVED_IMAGES+=("$filename")
-        echo "  - $filename"
+        # ファイル名の半角スペースをアンダースコアに変換
+        new_filename="${filename// /_}"
+        mv "$image_path" "$DEST_DIR/$new_filename"
+        MOVED_IMAGES+=("$new_filename")
+        if [ "$filename" != "$new_filename" ]; then
+            echo "  - $filename → $new_filename"
+        else
+            echo "  - $new_filename"
+        fi
     fi
 done <<< "$IMAGE_FILES"
 
