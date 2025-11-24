@@ -3,10 +3,13 @@ title: "Claude Code on the web使ってみた"
 date: "2025-11-06"
 category: "Tech Blog"
 excerpt: "ブラウザ上でClaude Codeを使ってGitHub連携でブログ記事を作成してみました。"
-thumbnail: "/images/screenshot_2025-11-08_19.20.59.png"
+thumbnail: "/images/claude-code-web/screenshot 2025-11-15 20.24.28.png"
 ---
 
-Claude Code on the webを使って、実際にこのブログ記事を作成してみました。その体験と感想をまとめます。
+
+こんなメールが届いていました。無料でクレジットを沢山くれたみたいなのでClaude Code on the Webで当ブログサイトのデザイン改修を行ってみます
+
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.49.40.png" width="600">
 
 ---
 
@@ -22,32 +25,47 @@ Claude Code on the webを使って、実際にこのブログ記事を作成し�
 
 ---
 
-## 🚀 実際の使用体験
-
-### GitHub連携
+## 実際に使用してみる
 
 Claude Code on the webでは、GitHubリポジトリと連携することで、直接ブランチを作成してコード編集ができます。
 
 今回は以下の流れで作業しました：
 
-1. GitHubアカウントでログイン
+1. GitHubアカウントでログイン、セットアップ
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.50.05.png" width="600">
+
 2. 対象リポジトリを選択
-3. 新しいブランチで作業開始
-4. 記事作成を依頼
-5. 自動的にコミット・プッシュ
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.50.19.png" width="600">
 
-### 記事作成の流れ
+3. 記事作成を依頼
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.54.33.png" width="600">
 
-単純に「Claude Code on the web使ってみたというタイトルの新規ブログを作成して」と指示するだけで：
+4. コミット・プッシュ
+なんか出たのでインストールします
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.54.50.png" width="600">
 
-- 既存の記事フォーマットを自動で分析
-- 同じ構造でMarkdownファイルを作成
-- 適切なfrontmatterを設定
-- 本文の構成も提案
+PR作成&merge
+<img src="/images/claude-code-web/screenshot_2025-11-05_21.33.06.png"
+width="600">
 
-このように、既存のコードベースを理解した上で、一貫性のある成果物を作成してくれます。
+<img src="/images/claude-code-web/screenshot_2025-11-05_21.33.28.png" width="600">
 
----
+結果↓
+<img src="/images/claude-code-web/screenshot_2025-11-05_19.52.20.png" width="600">
+
+<img src="/images/claude-code-web/screenshot_2025-11-05_22.06.42.png" width="600">
+
+ご覧の通り、修正は反映されたのですが分かりにくいので、サムネイル機能を追加で実装します
+
+
+<img src="/images/claude-code-web/screenshot_2025-11-08_18.16.42.png" width="600">
+
+<img src="/images/claude-code-web/screenshot_2025-11-08_18.22.05.png" width="600">
+
+<img src="/images/claude-code-web/screenshot_2025-11-08_19.21.57.png" width="600">
+
+いい感じですね！
+
 
 ## 💡 便利だと感じたポイント
 
@@ -59,13 +77,13 @@ Claude Code on the webでは、GitHubリポジトリと連携することで、�
 
 既存のファイル構造やコーディングスタイルを自動的に理解して、それに合わせた提案をしてくれます。
 
-### 3. Git操作の自動化
+### 3. Git操作
 
-ブランチ作成、コミット、プッシュといったGit操作を全て自動で行ってくれるため、作業フローがスムーズです。
+ブランチ作成、コミット、プッシュといったGit操作をGUIで行うため、直感的で分かりやすいです。
 
-### 4. 日本語対応
+### 4. スマホで使用可能
 
-日本語での自然な会話形式で指示できるため、英語が苦手でも問題なく使えます。
+スマホでも操作可能なので、影響範囲が少ない修正を移動時間などに進められるのはアリだなと個人的に思いました。
 
 ---
 
@@ -81,20 +99,8 @@ GitHub連携時には適切なアクセス権限の設定が必要です。
 
 ---
 
-## まとめ
-
-Claude Code on the webは、ブラウザから手軽にAI支援開発ができる画期的なツールです。
-
-特に以下のような用途に最適：
-- ブログ記事やドキュメントの作成
-- 既存コードのリファクタリング
-- 新機能の追加
-- バグ修正
-
-実際にこの記事もClaude Code on the webで作成しました。開発の生産性を大きく向上させる可能性を感じています。
+<br>
 
 興味のある方はぜひ試してみてください！
-
----
 
 最後までご覧いただきありがとうございました。
